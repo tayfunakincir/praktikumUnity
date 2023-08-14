@@ -61,6 +61,10 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+*.idea/
+*Thumbs.db
+*Desktop.ini
+
 # Crashlytics generated file
 crashlytics-build.properties
 

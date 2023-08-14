@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0b3a39c3d29bcbf45b97a504fc1dedbe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - DefaultSocketableTags: {instanceID: 0}
+  - LeftHand: {instanceID: 0}
+  - RightHand: {instanceID: 0}
+  - FullBody: {instanceID: 0}
+  - OpenHandPose: {instanceID: 0}
+  - DefaultJointSettings: {instanceID: 0}
+  - LineGrabSettings: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
