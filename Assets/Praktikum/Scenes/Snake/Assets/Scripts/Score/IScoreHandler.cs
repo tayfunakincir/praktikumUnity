@@ -6,6 +6,9 @@ namespace Praktikum.Scenes.Snake.Assets.Scripts.Score
     {
         List<int> Load();
         void Save();
-        void Add(int score);
+        void AddScore();
+        void Increase();
+        void Reset();
+        void Delete();
     }
 }

@@ -1,57 +1,97 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Praktikum.Scenes.Snake.Assets.Scripts.Score;
 using UnityEngine;
 
-public class ScoreHandler : IScoreHandler
+namespace Praktikum.Scenes.Snake.Assets.Scripts.Score
 {
-    private List<int> _scores;
+    public class ScoreHandler : MonoBehaviour, IScoreHandler
+    {
+        private readonly List<int> _scores;
+        private int _currentScore;
 
-    public ScoreHandler()
-    {
-        Clear();
-        _scores = Load();
-    }
-    
-    public List<int> Load()
-    {
-        // if (!PlayerPrefs.HasKey(PrefKeys.Highscores))
-        // {
-        //     return new List<int>();
-        // }
-        //
-        // var highscores = PlayerPrefs.GetString(PrefKeys.Highscores);
-        // var highscoresSplit = highscores.Split(',');
-        //
-        // return highscoresSplit.Select(int.Parse).ToList();
-        //
-        return new List<int>();
-    }
-
-    public void Save()
-    {
-        // sort first
-        _scores.Sort();
-        
-        // save three entries
-        var value = "";
-        for (var i = 0; i < 3; i++)
+        public ScoreHandler()
         {
-            value += _scores[i] + ",";
+            _scores = Load();
+        
+            Reset();
+        }
+    
+        public List<int> Load()
+        {
+            var filePath = GetFolderPath() + PrefKeys.Highscores + ".json";
+            if (!File.Exists(filePath))
+            {
+                return new List<int>();
+            }
+        
+            var jsonString = File.ReadAllText(filePath);
+            var data = JsonUtility.FromJson<Highscore>(jsonString);
+
+            if (data.scores == null || data.scores.Length == 0)
+            {
+                return new List<int>();
+            }
+        
+            return data.scores.ToList();
         }
 
-        PlayerPrefs.SetString(PrefKeys.Highscores, value);
-        PlayerPrefs.Save();
-    }
+        public void Save()
+        {
+            // sort first
+            _scores.Sort();
+            _scores.Reverse();
+                
+            // save json
+            var data = new Highscore()
+            {
+                scores = Enumerable.Range(0, Mathf.Min(_scores.Count, 3))
+                    .Select(n => _scores[n])
+                    .ToArray()
+            };
+        
+            // Debug.Log(string.Join(",", data.scores.Select(n => "Score: " + n + " ")));
+        
+            CreateFolder();
 
-    public void Add(int score)
-    {
-        _scores.Add(score);
-        PlayerPrefs.SetInt(PrefKeys.Score, score);
-    }
+            var jsonString = JsonUtility.ToJson(data, true);
+            File.WriteAllText(GetFolderPath() + PrefKeys.Highscores + ".json", jsonString);
+        }
 
-    private static void Clear()
-    {
-        PlayerPrefs.DeleteKey(PrefKeys.Score);
+        public void AddScore()
+        {
+            _scores.Add(_currentScore);
+        }
+
+        public void Increase()
+        {
+            _currentScore += 1;
+        }
+
+        public void Reset()
+        {
+            _currentScore = 0;
+        }
+
+        public void Delete()
+        {
+            File.Delete(GetFolderPath() + PrefKeys.Highscores + ".json");
+        }
+
+        private static void CreateFolder()
+        {
+            if (Directory.Exists(GetFolderPath()))
+            {
+                return;
+            }
+        
+            Directory.CreateDirectory(GetFolderPath());
+        }
+    
+        private static string GetFolderPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Praktikum\\Unity\\Snake\\";
+        }
     }
 }

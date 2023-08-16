@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Praktikum/Scenes/Snake/MainMenu.unity
     guid: 55469613b32e9e2429ee23ab47899083
   - enabled: 1
+    path: Assets/Praktikum/Scenes/Snake/DifficultySelector.unity
+    guid: 948cc858a829f5e43b6d6c9f188c5c95
+  - enabled: 1
     path: Assets/Praktikum/Scenes/Snake/Snake.unity
     guid: db778bb2d57c6b34f94df9699254e0a7
   m_configObjects:

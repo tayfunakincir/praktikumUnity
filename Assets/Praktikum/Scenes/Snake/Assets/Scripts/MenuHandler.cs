@@ -1,49 +1,57 @@
+using System.Linq;
 using Praktikum.Scenes.Snake.Assets.Scripts.Score;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuHandler : MonoBehaviour
+namespace Praktikum.Scenes.Snake.Assets.Scripts
 {
-    public Text title;
-    public Text highscoresText;
-
-    private void Awake()
+    public class MenuHandler : MonoBehaviour
     {
-        if (PlayerPrefs.HasKey(PrefKeys.Highscores))
+
+        public Text highscoresTitle;
+        public Text highscoresText;
+        public Button resetButton;
+    
+        private static IScoreHandler _scoreHandler;
+
+        private void Awake()
         {
-            var highscores = PlayerPrefs.GetString(PrefKeys.Highscores);
-            var splitHighscores = highscores.Split(',');
-        
-            var text = "YOUR HIGHSCORES";
-        
-            for (var i = 0; i < splitHighscores.Length - 1; i++)
+            _scoreHandler ??= gameObject.AddComponent<ScoreHandler>();
+
+            ShowHighscores();
+        }
+    
+        private void ShowHighscores()
+        {
+            var list = _scoreHandler.Load();
+            if (list.Count == 0)
             {
-                text += "#" + (i + 1) + ": " + splitHighscores[i] + ", ";
+                highscoresTitle.text = "";
+                highscoresText.text = "";
+                resetButton.enabled = false;
+                return;
             }
-        
-            highscoresText.text = text;
-        }
-        else
-        {
-            highscoresText.text = "";
-        }
-        
-        if (!PlayerPrefs.HasKey(PrefKeys.Score))
-        {
-            return;
-        }
-        var score = PlayerPrefs.GetInt(PrefKeys.Score);
-        title.text = "Score: " + score;
-    }
 
-    public void LoadGame()
-    {
-        SceneManager.LoadScene(1);
-    }
+            highscoresTitle.text = "YOUR HIGHSCORES";
+            highscoresText.text = string.Join(" - ", Enumerable.Range(0, list.Count).Select(n => "#" + (n + 1) + ": " + list[n]));
+            resetButton.enabled = true;
+        }
 
-    public void QuitGame()
-    {
-        Application.Quit();
+        public void NextScene()
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
+
+        public void ResetScores()
+        {
+            _scoreHandler.Delete();
+            ShowHighscores();
+        }
     }
 }
