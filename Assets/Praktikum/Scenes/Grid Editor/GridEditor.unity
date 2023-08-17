@@ -123,6 +123,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1828676110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828676112}
+  - component: {fileID: 1828676111}
+  m_Layer: 0
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1828676111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828676110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7aeb6d4f77457b4b9bd108806ca4517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spherePrefab: {fileID: 9029601537159076695, guid: d81dd8f1069ce6041a024cb5a875170a, type: 3}
+  jointPrefab: {fileID: 5057495462803532270, guid: cd2074aa78e726f4da6237adcd5cf063, type: 3}
+  cubePrefab: {fileID: 7903658525272881047, guid: 8224b8172b861f14eb9794db74a56051, type: 3}
+  cubeSelectedPrefab: {fileID: 6847325791983831580, guid: a10666e6e3a465f49b9d3d8c27f76b48, type: 3}
+  length: 50
+  gridSize: 10
+--- !u!4 &1828676112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828676110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938010117
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +185,7 @@ GameObject:
   - component: {fileID: 1938010119}
   - component: {fileID: 1938010118}
   - component: {fileID: 1938010121}
+  - component: {fileID: 1938010122}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -333,3 +384,21 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &1938010122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938010117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480bbd89a3fcf7f43bcf097b333c81a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1938010119}
+  moveFactor: 10
+  zoomFactor: 100
+  rotationFactor: 50
+  height: 15
+  angle: 35
