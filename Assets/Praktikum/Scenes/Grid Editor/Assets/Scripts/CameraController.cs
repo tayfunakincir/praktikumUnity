@@ -8,8 +8,8 @@ namespace Praktikum.Scenes.Grid_Editor.Assets.Scripts
         public Camera mainCamera;
         
         [SerializeField] private float moveFactor = 10f;
-        [SerializeField] private float zoomFactor = 100f;
-        [SerializeField] private float rotationFactor = 50f;
+        [SerializeField] private float zoomFactor = 150f;
+        [SerializeField] private float rotationFactor = 100f;
         [SerializeField] private float height = 15f;
         [SerializeField] private float angle = 35f;
         
