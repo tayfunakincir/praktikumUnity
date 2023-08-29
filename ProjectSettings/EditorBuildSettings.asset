@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Praktikum/Scenes/Snake/MainMenu.unity
+    guid: 55469613b32e9e2429ee23ab47899083
+  - enabled: 1
+    path: Assets/Praktikum/Scenes/Snake/DifficultySelector.unity
+    guid: 948cc858a829f5e43b6d6c9f188c5c95
+  - enabled: 1
+    path: Assets/Praktikum/Scenes/Snake/Snake.unity
+    guid: db778bb2d57c6b34f94df9699254e0a7
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 358278aef212462448080c53a5e580d1, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e8999e32103db9d4d96aabc3c11d3ddd, type: 2}
